@@ -14,10 +14,7 @@ export default () => {
 
   return (
     <>
-    <Link href = '/a?id=1' as = '/a/1'>
-      <Button>welcome to next</Button>
-    </Link>
-    <Button onClick = {gotoTestB}>test b</Button>
-  </>
+      <span>Index</span>
+    </>
   )
   }
