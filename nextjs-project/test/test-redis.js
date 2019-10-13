@@ -7,7 +7,7 @@ async function test() {
 
   await redis.set('c', 123)
   const keys = await redis.keys('*')
-
+  
   console.log(keys)
 }
 
