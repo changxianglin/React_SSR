@@ -2066,11 +2066,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
       query: {
         id: 2
       }
-    });
+    }, '/test/b/2');
   }
 
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/a?id=1"
+    href: "/a?id=1",
+    as: "/a/1"
   }, __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_0___default.a, null, "welcome to next")), __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_0___default.a, {
     onClick: gotoTestB
   }, "test b"));
