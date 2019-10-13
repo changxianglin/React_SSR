@@ -35594,11 +35594,16 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   function gotoTestB() {
-    next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push('/test/b');
+    next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push({
+      pathname: '/test/b',
+      query: {
+        id: 2
+      }
+    });
   }
 
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/a"
+    href: "/a?id=1"
   }, __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_0___default.a, null, "welcome to next")), __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_0___default.a, {
     onClick: gotoTestB
   }, "test b"));
