@@ -36128,7 +36128,6 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps;
-      console.log(Component);
       return __jsx(next_app__WEBPACK_IMPORTED_MODULE_8__["Container"], null, __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_9__["default"], null, __jsx(Component, pageProps)));
     }
   }], [{
@@ -36137,23 +36136,31 @@ function (_App) {
       var _getInitialProps = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
       /*#__PURE__*/
       _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
-        var Component, pageProps;
+        var Component, ctx, pageProps;
         return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                Component = _ref.Component;
-                console.log('app init');
+                Component = _ref.Component, ctx = _ref.ctx;
+                pageProps = {};
 
-                if (Component.getInitialProps) {
-                  pageProps = Component.getInitialProps();
+                if (!Component.getInitialProps) {
+                  _context.next = 6;
+                  break;
                 }
 
+                _context.next = 5;
+                return Component.getInitialProps(ctx);
+
+              case 5:
+                pageProps = _context.sent;
+
+              case 6:
                 return _context.abrupt("return", {
                   pageProps: pageProps
                 });
 
-              case 4:
+              case 7:
               case "end":
                 return _context.stop();
             }

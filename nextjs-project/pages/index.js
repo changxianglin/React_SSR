@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Router from 'next/router'
-import { Button } from 'antd'
+
 
 export default () => {
   function gotoTestB() {
@@ -15,6 +15,7 @@ export default () => {
   return (
     <>
       <span>Index</span>
+      <a>Index a</a>
     </>
   )
   }

@@ -10263,7 +10263,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     }, '/test/b/2');
   }
 
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Index"));
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Index"), __jsx("a", null, "Index a"));
 });
 
 /***/ }),
