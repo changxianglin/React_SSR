@@ -15,7 +15,7 @@ class MyDocument extends Document {
 
     try {
       ctx.originalRenderPage = () => originalRenderPage({
-        enhanceApp: App => (...props) => sheet.collectStyles(<App {...props} />)
+        enhanceApp: App => (props) => sheet.collectStyles(<App {...props} />)
       })
       const props = await Document.getInitialProps(ctx)
 

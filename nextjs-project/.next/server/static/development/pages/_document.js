@@ -1300,9 +1300,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/document */ "./node_modules/next/document.js");
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_3__);
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 function withLog(Comp) {
@@ -1314,15 +1317,21 @@ function withLog(Comp) {
 
 class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_2___default.a {
   static async getInitialProps(ctx) {
+    const sheet = new styled_components__WEBPACK_IMPORTED_MODULE_3__["ServerStyleSheet"]();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.originalRenderPage = () => originalRenderPage({
-      enhanceApp: App => withLog(App),
-      enhanceComponent: Component => withLog(Component)
-    });
+    try {
+      ctx.originalRenderPage = () => originalRenderPage({
+        enhanceApp: App => props => sheet.collectStyles(__jsx(App, props))
+      });
 
-    const props = await next_document__WEBPACK_IMPORTED_MODULE_2___default.a.getInitialProps(ctx);
-    return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props);
+      const props = await next_document__WEBPACK_IMPORTED_MODULE_2___default.a.getInitialProps(ctx);
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+        styles: __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, props.styles, sheet.getStyleElement())
+      });
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
@@ -1476,6 +1485,17 @@ module.exports = require("prop-types");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "styled-components":
+/*!************************************!*\
+  !*** external "styled-components" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-components");
 
 /***/ }),
 
