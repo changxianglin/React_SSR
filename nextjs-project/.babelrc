@@ -5,6 +5,9 @@
       "import", {
         "libraryName": "antd"
       }
+    ],
+    [
+      "style-components", { "ssr": true}
     ]
   ]
 }

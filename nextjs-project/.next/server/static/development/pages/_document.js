@@ -1305,8 +1305,22 @@ __webpack_require__.r(__webpack_exports__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
+function withLog(Comp) {
+  return props => {
+    console.log(props);
+    return __jsx(Comp, props);
+  };
+}
+
 class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_2___default.a {
   static async getInitialProps(ctx) {
+    const originalRenderPage = ctx.renderPage;
+
+    ctx.originalRenderPage = () => originalRenderPage({
+      enhanceApp: App => withLog(App),
+      enhanceComponent: Component => withLog(Component)
+    });
+
     const props = await next_document__WEBPACK_IMPORTED_MODULE_2___default.a.getInitialProps(ctx);
     return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props);
   }

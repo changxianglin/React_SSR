@@ -1,11 +1,30 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+function withLog(Comp) {
+  return (props) => {
+    console.log(props)
+    return <Comp {...props} />
+  }
+}
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const props = await Document.getInitialProps(ctx)
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
 
-    return {
-      ...props
+    try {
+      ctx.originalRenderPage = () => originalRenderPage({
+        enhanceApp: App => (...props) => sheet.collectStyles(<App {...props} />)
+      })
+      const props = await Document.getInitialProps(ctx)
+
+      return {
+        ...props,
+        styles: <>{props.styles}{sheet.getStyleElement()}</>
+      }
+    } finally {
+      sheet.seal()
     }
   }
   render() {
