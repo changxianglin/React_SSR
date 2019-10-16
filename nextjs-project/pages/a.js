@@ -1,4 +1,5 @@
 import { withRouter } from 'next/router'
+import getCofnig from 'next/config'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -7,18 +8,22 @@ import styled from 'styled-components'
 
 const Comp = dynamic(import('../components/comp'))
 
+const { serverRuntimeConfig, publicRuntimeConfig } = getCofnig()
+
 const Title = styled.h1`
   color: yellow;
   font-size: 40px;
 `
 
-const A = ({ router, name, time }) => (
-  <>
+const A = ({ router, name, time }) => {
+  console.log(serverRuntimeConfig, publicRuntimeConfig)
+  return (
+    <>
     <Title>This is Title {time}</Title>
     <Comp />
     <Link href = '#aaa'>
       <a className = 'link'>
-        A {router.query.id} {name}
+        A {router.query.id} {name} {process.env.customKey}
       </a>
     </Link>
       <style jsx>{`
@@ -30,7 +35,8 @@ const A = ({ router, name, time }) => (
         }
       `}</style>
   </>
-)
+  )
+}
 
 A.getInitialProps = async ctx => {
   const moment = await import('moment')
